@@ -70,7 +70,7 @@ spec:
         write:  
           persistence:  
             enabled: true
-            storageClass:gp2
+            storageClass: gp2
             size: 1Gi
         read: 
           autoscaling:
