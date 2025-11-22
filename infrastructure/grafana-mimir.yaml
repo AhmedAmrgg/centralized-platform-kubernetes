@@ -80,7 +80,7 @@ spec:
       releaseName: mimir-distributed
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: grafana-mimir
+    namespace: mimir
   syncPolicy:
     syncOptions:
       - ServerSideApply=true
