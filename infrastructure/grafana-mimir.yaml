@@ -40,8 +40,8 @@ spec:
         gateway:
           resources:
             requests:  
-              cpu: 10m
-              memory: 100Mi
+              cpu: 100m
+              memory: 512Mi
           autoscaling:
             enabled: true
             minReplicas: 1
