@@ -78,6 +78,8 @@ spec:
             storageClass: gp2
         minio:
           enabled: false
+        kafka: 
+          enabled: false
 
  
       releaseName: mimir-distributed
@@ -87,5 +89,6 @@ spec:
   syncPolicy:
     syncOptions:
       - ServerSideApply=true
+
 
 
