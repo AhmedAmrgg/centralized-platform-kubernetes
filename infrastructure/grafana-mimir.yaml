@@ -13,26 +13,27 @@ spec:
       values: |
         serviceAccount: 
           annotations: 
-          eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/my-role-s3
+            eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/my-role-s3
+          name: mimir
         mimir:
           structuredConfig:
             common:
               storage:
                 backend: s3
                 s3:
-                  endpoint: s3.us-east-2.amazonaws.com
-                  region: us-east-2
+                  endpoint: s3.us-east-1.amazonaws.com
+                  region: us-east-1
             blocks_storage:
               s3:
-                bucket_name: mimir-blocks
+                bucket_name: mimir-blocks-am
 
             alertmanager_storage:
               s3:
-                bucket_name: mimir-alertmanager
+                bucket_name: mimir-alertmanager-am
 
             ruler_storage:
               s3:
-                bucket_name: mimir-ruler
+                bucket_name: mimir-ruler-am
             limits:
               # Delete from storage metrics data older than 1 year.
               compactor_blocks_retention_period: 1y 
@@ -40,7 +41,7 @@ spec:
           autoscaling:
             enabled: true
             minReplicas: 1
-            maxReplicas: 3
+            maxReplicas: 2
           service:
             type: ClusterIP 
           ingress:
@@ -52,6 +53,10 @@ spec:
                   - path: /
                     pathType: Prefix
         store_gateway:
+          resources: 
+            requests:  
+              cpu: 10m
+              memory: 100Mi
           zoneAwareReplication:
             enabled: false
             size: 20Gi
@@ -81,3 +86,4 @@ spec:
 
 
 
+  
