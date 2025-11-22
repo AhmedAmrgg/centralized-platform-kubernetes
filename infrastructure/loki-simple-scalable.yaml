@@ -1,0 +1,92 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki-scalable
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: loki-simple-scalable
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 1.8.11
+    helm:
+      values: |
+        serviceAccount:
+          annotations:
+           eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/my-role-s3
+        loki:
+          schemaConfig:
+            configs:
+              - from: "2024-04-01"
+                store: tsdb
+                object_store: s3
+                schema: v13
+                index:
+                  prefix: loki_index_
+                  period: 24h
+          storage:
+            type: s3
+            bucketNames:
+                chunks: name
+                ruler: name
+                admin: name
+            s3:
+              region: us-east-1
+              endpoint: s3.amazonaws.com
+              s3ForcePathStyle: false
+              insecure: false
+          limits_config:
+            retention_period: 50h
+          compactor:
+            working_directory: /data/retention
+            compaction_interval: 10m
+            retention_enabled: true
+            retention_delete_delay: 2h
+            retention_delete_worker_count: 150
+        gateway:
+          service:
+            type:
+        write:  
+          persistence:  
+            storageClass:
+        read: 
+          autoscaling:
+            minReplicas: 2
+            maxReplicas: 4
+          ingress:
+            enabled: true
+            ingressClassName: nginx
+      releaseName: loki-simple-scalable
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: loki
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+
+
+
+
+          # write:
+          #   persistence:
+          #     enapled: true
+          #     storageClass: type
+          #     size: 20Gi
+          # gateway:
+          #   service:
+          #     type: ClusterIP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

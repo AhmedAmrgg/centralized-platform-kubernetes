@@ -1,0 +1,40 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: grafana
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://grafana.github.io/helm-charts
+#     targetRevision: 10.1.4
+#     chart: grafana
+#     helm:
+#       values: |
+#         grafana.ini:
+#           database:
+#             type: postgres
+#             host: postgresql.grafana.svc.cluster.local:5432
+#             name: grafana
+#             user: grafana
+#             ssl_mode: disable
+        
+#         envFromSecret: grafana-database-secret
+        
+#         persistence:
+#           enabled: true
+#           size: 10Gi
+        
+#         service:
+#           type: LoadBalancer
+  
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: grafana
+  
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#     - CreateNamespace=true

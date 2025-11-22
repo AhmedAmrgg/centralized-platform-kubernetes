@@ -1,0 +1,83 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mimir-distributed
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: mimir-distributed
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 6.1.0-weekly.368
+    helm:
+      values: |
+        serviceAccount: 
+          annotations: 
+          eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/my-role-s3
+        mimir:
+          structuredConfig:
+            common:
+              storage:
+                backend: s3
+                s3:
+                  endpoint: s3.us-east-2.amazonaws.com
+                  region: us-east-2
+            blocks_storage:
+              s3:
+                bucket_name: mimir-blocks
+
+            alertmanager_storage:
+              s3:
+                bucket_name: mimir-alertmanager
+
+            ruler_storage:
+              s3:
+                bucket_name: mimir-ruler
+            limits:
+              # Delete from storage metrics data older than 1 year.
+              compactor_blocks_retention_period: 1y 
+        gateway:
+          autoscaling:
+            enabled: true
+            minReplicas: 1
+            maxReplicas: 3
+          service:
+            type: ClusterIP 
+          ingress:
+            enabled: true
+            ingressClassName: nginx 
+            hosts:
+              - host: mimir.devopslab.com
+                paths:
+                  - path: /
+                    pathType: Prefix
+        store_gateway:
+          zoneAwareReplication:
+            enabled: false
+            size: 20Gi
+            storageClass: gp3
+        ingester:
+          zoneAwareReplication:
+            enabled: false
+            size: 20Gi
+            storageClass: gp3
+
+        alertmanager:
+          zoneAwareReplication:
+            enabled: false
+            size: 10Gi
+            storageClass: gp3
+        minio:
+          enabled: false
+
+ 
+      releaseName: mimir-distributed
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: grafana-mimir
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+
+
+

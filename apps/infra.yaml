@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-1
+  namespace: argocd
+  annotations:
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:AhmedAmrgg/centralized-platform-kubernetes.git
+    targetRevision: main
+    path: infrastructure
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: app-1
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
