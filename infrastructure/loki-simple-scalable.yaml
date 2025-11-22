@@ -42,9 +42,9 @@ spec:
               chunk_encoding: snappy  
           pattern_ingester:
             enabled: true       
-          limits_config:
-            volume_enabled: true
-            retention_period: 672h
+          # limits_config:
+          #   volume_enabled: true
+          #   retention_period: 672h
           compactor:
             retention_enabled: true 
             delete_request_store: s3
