@@ -14,7 +14,7 @@ spec:
         deploymentMode: SimpleScalable
         serviceAccount:
           annotations:
-           eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/mimir-sa
+            eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/mimir-sa
         loki:
           schemaConfig:
             configs:
