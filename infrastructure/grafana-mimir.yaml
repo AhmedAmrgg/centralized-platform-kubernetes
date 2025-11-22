@@ -13,8 +13,8 @@ spec:
       values: |
         serviceAccount: 
           annotations: 
-            eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/my-role-s3
-          name: mimir
+            eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/mimir-role
+          name: mimir-sa
         mimir:
           structuredConfig:
             common:
