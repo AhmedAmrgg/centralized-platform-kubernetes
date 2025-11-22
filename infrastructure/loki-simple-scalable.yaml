@@ -35,14 +35,15 @@ spec:
               endpoint: s3.amazonaws.com
               s3ForcePathStyle: false
               insecure: false
+          ingester:
+              chunk_encoding: snappy         
           limits_config:
-            retention_period: 200h
+            allow_structured_metadata: true
+            volume_enabled: true
+            retention_period: 672h
           compactor:
-            working_directory: /data/retention
-            compaction_interval: 10m
-            retention_enabled: true
-            retention_delete_delay: 2h
-            retention_delete_worker_count: 150
+            retention_enabled: true 
+            delete_request_store: s3
         gateway:
           service:
             type: LoadBalancer
@@ -50,7 +51,7 @@ spec:
           persistence:  
             enabled: true
             storageClass:gp2
-              size: 1Gi
+            size: 1Gi
         read: 
           autoscaling:
             minReplicas: 1
@@ -68,18 +69,6 @@ spec:
   syncPolicy:
     syncOptions:
       - ServerSideApply=true
-
-
-
-
-          # write:
-          #   persistence:
-          #     enapled: true
-          #     storageClass: type
-          #     size: 20Gi
-          # gateway:
-          #   service:
-          #     type: ClusterIP
 
 
 
