@@ -52,8 +52,6 @@ spec:
           ingress:
             enabled: true
             ingressClassName: alb 
-            annotations:
-              alb.ingress.kubernetes.io/scheme: internet-facing
             hosts:
               - host: mimir.devopslab.com
                 paths:

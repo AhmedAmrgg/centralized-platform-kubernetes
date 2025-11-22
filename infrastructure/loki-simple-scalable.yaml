@@ -13,11 +13,11 @@ spec:
       values: |
         serviceAccount:
           annotations:
-           eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/my-role-s3
+           eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/mimir-sa
         loki:
           schemaConfig:
             configs:
-              - from: "2024-04-01"
+              - from: "2026-04-01"
                 store: tsdb
                 object_store: s3
                 schema: v13
@@ -27,16 +27,16 @@ spec:
           storage:
             type: s3
             bucketNames:
-                chunks: name
-                ruler: name
-                admin: name
+                chunks: loki-am-1
+                ruler: loki-am-2
+                admin: loki-am-3
             s3:
               region: us-east-1
               endpoint: s3.amazonaws.com
               s3ForcePathStyle: false
               insecure: false
           limits_config:
-            retention_period: 50h
+            retention_period: 200h
           compactor:
             working_directory: /data/retention
             compaction_interval: 10m
@@ -45,17 +45,22 @@ spec:
             retention_delete_worker_count: 150
         gateway:
           service:
-            type:
+            type: LoadBalancer
         write:  
           persistence:  
-            storageClass:
+            enabled: true
+            storageClass:gp2
+              size: 1Gi
         read: 
           autoscaling:
-            minReplicas: 2
-            maxReplicas: 4
+            minReplicas: 1
+            maxReplicas: 2
           ingress:
             enabled: true
-            ingressClassName: nginx
+            ingressClassName: alb
+        crds:
+              enabled: false
+
       releaseName: loki-simple-scalable
   destination:
     server: "https://kubernetes.default.svc"
