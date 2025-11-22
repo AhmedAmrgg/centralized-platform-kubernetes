@@ -6,11 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    chart: loki-simple-scalable
+    chart: loki 
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 1.8.11
+    targetRevision: 6.46.0
     helm:
       values: |
+        deploymentMode: SimpleScalable
         serviceAccount:
           annotations:
            eks.amazonaws.com/role-arn: arn:aws:iam::313616258649:role/mimir-sa
@@ -24,6 +25,11 @@ spec:
                 index:
                   prefix: loki_index_
                   period: 24h
+          storage_config:
+            aws:
+              region: us-east-1 
+              bucketnames: loki-am-1
+              s3forcepathstyle: false
           storage:
             type: s3
             bucketNames:
@@ -32,11 +38,10 @@ spec:
                 admin: loki-am-3
             s3:
               region: us-east-1
-              endpoint: s3.amazonaws.com
-              s3ForcePathStyle: false
-              insecure: false
           ingester:
-              chunk_encoding: snappy         
+              chunk_encoding: snappy  
+          pattern_ingester:
+            enabled: true       
           limits_config:
             volume_enabled: true
             retention_period: 672h
