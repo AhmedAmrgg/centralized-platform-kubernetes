@@ -58,8 +58,6 @@ spec:
           ingress:
             enabled: true
             ingressClassName: alb
-        crds:
-              enabled: false
 
       releaseName: loki-simple-scalable
   destination:
@@ -68,18 +66,3 @@ spec:
   syncPolicy:
     syncOptions:
       - ServerSideApply=true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
