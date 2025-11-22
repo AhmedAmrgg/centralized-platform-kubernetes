@@ -79,7 +79,7 @@ spec:
         minio:
           enabled: false
         kafka: 
-          enabled: false
+          enabled: true
 
  
       releaseName: mimir-distributed
