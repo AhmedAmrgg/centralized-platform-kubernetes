@@ -89,5 +89,3 @@ spec:
       - ServerSideApply=true
 
 
-
-  store_gateway.persistentVolume.enabled
