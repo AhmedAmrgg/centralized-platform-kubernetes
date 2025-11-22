@@ -51,7 +51,7 @@ spec:
             type: ClusterIP 
           ingress:
             enabled: true
-            ingressClassName: nginx 
+            ingressClassName: alb 
             hosts:
               - host: mimir.devopslab.com
                 paths:
