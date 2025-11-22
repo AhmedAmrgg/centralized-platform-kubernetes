@@ -59,20 +59,23 @@ spec:
                     pathType: Prefix
         store_gateway:
           zoneAwareReplication:
-            enabled: true
+            enabled: false
+          persistentVolume:
             size: 1Gi
-            storageClass: gp3
+            storageClass: gp2
         ingester:
           zoneAwareReplication:
-            enabled: true
+            enabled: false
+          persistentVolume:
             size: 1Gi
-            storageClass: gp3
+            storageClass: gp2
 
         alertmanager:
           zoneAwareReplication:
-            enabled: true
+            enabled: false
+          persistentVolume:
             size: 1Gi
-            storageClass: gp3
+            storageClass: gp2
         minio:
           enabled: false
 
@@ -87,4 +90,4 @@ spec:
 
 
 
-  
+  store_gateway.persistentVolume.enabled
