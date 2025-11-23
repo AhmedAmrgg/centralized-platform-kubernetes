@@ -14,9 +14,9 @@ spec:
         grafana.ini:
           database:
             type: postgres
-            name: grafana
-            user: grafana
-            password: 'StrongGrafanaPass123'
+            name: "grafana"
+            user: "grafana"
+            password: "StrongGrafanaPass123"
             host: postgresql.postgresql:5432
             ssl_mode: disable
         persistence:
