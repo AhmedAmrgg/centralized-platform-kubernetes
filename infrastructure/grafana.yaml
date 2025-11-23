@@ -15,9 +15,9 @@ spec:
           database:
             type: postgres
             host: postgres:5432
-            name: grafana
-            user: grafana
-            password: StrongPassword123
+            name: 
+            user: 
+            password: 
             ssl_mode: disable
         
         envFromSecret: grafana-database-secret
