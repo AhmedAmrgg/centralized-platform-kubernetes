@@ -14,13 +14,10 @@ spec:
         image: 
           registry: registry-1.docker.io
           repository: bitnamilegacy/postgresql
-          tag: latest
+          tag: 16.4.0
         primary: 
           persistence: 
-            enabled:
-            storageClass: alb
-            volumeName: 
-
+            enabled: false
       releaseName: postgresql
   destination:
     server: "https://kubernetes.default.svc"
