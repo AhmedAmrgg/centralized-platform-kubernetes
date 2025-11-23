@@ -16,7 +16,6 @@ spec:
             type: postgres
             host: postgres:5432
             ssl_mode: disable
-        envFromSecret: grafana-database-secret
         persistence:
           enabled: false
         service:
