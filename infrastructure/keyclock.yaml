@@ -11,8 +11,16 @@
 #     chart: keycloak
 #     helm:
 #       values: |
-#         grafana.ini:
-
+#         image:
+#           registry: docker.io
+#           repository: bitnami/keycloak
+#           tag: 26.3.3-debian-12-r0
+#         auth:
+#           adminUser: user
+#           adminPassword: ""
+#           passwordSecretKey: ""
+#         global:
+#           defaultStorageClass
 #   destination:
 #     server: https://kubernetes.default.svc
 #     namespace: keyclock
