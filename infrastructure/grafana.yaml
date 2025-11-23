@@ -14,7 +14,7 @@ spec:
         grafana.ini:
           database:
             type: postgres
-            host: postgres:5432
+            host: postgresql.postgresql:5432
             ssl_mode: disable
         persistence:
           enabled: false
