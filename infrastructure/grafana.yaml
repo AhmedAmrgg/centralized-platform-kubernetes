@@ -17,8 +17,8 @@ spec:
           database:
             type: postgres
             name: "grafana"
-            user: "grafana"
-            password: "$postgrespassword"
+            user: "postgres"
+            password: "$postgres-password"
             host: postgresql.postgresql:5432
             ssl_mode: disable
         persistence:
