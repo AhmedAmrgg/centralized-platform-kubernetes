@@ -11,6 +11,7 @@ spec:
     chart: grafana
     helm:
       values: |
+        assertNoLeakedSecrets: false
         envFromSecret: postgres
         grafana.ini:
           database:
