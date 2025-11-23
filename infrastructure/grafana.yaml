@@ -11,12 +11,13 @@ spec:
     chart: grafana
     helm:
       values: |
+        envFromSecret: postgres
         grafana.ini:
           database:
             type: postgres
             name: "grafana"
             user: "grafana"
-            password: "StrongGrafanaPass123"
+            password: $postgrespassword
             host: postgresql.postgresql:5432
             ssl_mode: disable
         persistence:
