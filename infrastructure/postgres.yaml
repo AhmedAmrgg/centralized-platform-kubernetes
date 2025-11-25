@@ -1,30 +1,30 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: postgresql
-#   namespace: argocd
-# spec:
-#   project: default
-#   source:
-#     chart: postgresql
-#     repoURL: https://charts.bitnami.com/bitnami
-#     targetRevision: 18.1.11
-#     helm:
-#       values: |
-#         image: 
-#           registry: registry-1.docker.io
-#           repository: bitnamilegacy/postgresql
-#           tag: 16.4.0
-#         primary: 
-#           persistence: 
-#             enabled: false
-#       releaseName: postgresql
-#   destination:
-#     server: "https://kubernetes.default.svc"
-#     namespace: postgresql
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#     - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgresql
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: postgresql
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 18.1.11
+    helm:
+      values: |
+        image: 
+          registry: registry-1.docker.io
+          repository: bitnamilegacy/postgresql
+          tag: 16.4.0
+        primary: 
+          persistence: 
+            enabled: false
+      releaseName: postgresql
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: postgresql
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
