@@ -18,6 +18,10 @@ spec:
         primary: 
           persistence: 
             enabled: false
+        global:
+          storageClass: gp2
+          size: 1Gi
+          
       releaseName: postgresql
   destination:
     server: "https://kubernetes.default.svc"
