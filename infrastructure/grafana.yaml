@@ -14,13 +14,13 @@ spec:
         assertNoLeakedSecrets: false
         envFromSecret: postgres
         grafana.ini:
-          database:
-            type: postgres
-            name: "grafana"
-            user: "grafana"
-            password: "StrongGrafanaPass123"
-            host: postgresql.postgresql:5432
-            ssl_mode: disable
+          # database:
+          #   type: postgres
+          #   name: "grafana"
+          #   user: "grafana"
+          #   password: "StrongGrafanaPass123"
+          #   host: postgresql.postgresql:5432
+          #   ssl_mode: disable
           auth:  
             enabled = false
             name = Keycloak-OAuth
