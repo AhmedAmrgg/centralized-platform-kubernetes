@@ -18,12 +18,10 @@ spec:
         auth:
           adminUser: "admin"
           adminPassword: "admin1"
+          database: keycloakdb
         persistence:
           enabled: true
           size: "1Gi"
-        global:
-          storageClass: gp2
-          size: 1Gi
       releaseName: keycloak
   destination:
     server: https://kubernetes.default.svc
