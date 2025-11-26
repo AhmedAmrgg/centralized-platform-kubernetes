@@ -22,7 +22,7 @@ spec:
           #   host: postgresql.postgresql:5432
           #   ssl_mode: disable
           auth:  
-            enabled = false
+            enabled = true
             name = Keycloak-OAuth
             allow_sign_up = true
             # client_id = YOUR_APP_CLIENT_ID
