@@ -11,6 +11,9 @@ spec:
     chart: keycloak
     helm:
       values: |
+        global:
+          security: 
+            allowInsecureImages: true
         image:
           registry: docker.io
           repository: bitnamilegacy/keycloak
