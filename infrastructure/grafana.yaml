@@ -13,7 +13,8 @@ spec:
       values: |
         ingress: 
           annotations: 
-            alb.ingress.kubernetes.io/target-type: ip 
+            alb.ingress.kubernetes.io/target-type: ip
+            alb.ingress.kubernetes.io/scheme: internet-facing 
           enabled: true
           ingressClassName: alb
         # assertNoLeakedSecrets: false
