@@ -11,6 +11,9 @@ spec:
     chart: keycloak
     helm:
       values: |
+        ingress: 
+          enabled: true
+          ingressClassName: alb
         global:
           security: 
             allowInsecureImages: true
@@ -29,7 +32,6 @@ spec:
         auth:
           adminUser: "admin"
           adminPassword: "admin1"
-          database: keycloakdb
         persistence:
           enabled: true
           size: "1Gi"
@@ -49,40 +51,3 @@ spec:
 
 
 
-# replicaCount: 1
-
-# auth:
-#   adminUser: "admin"
-#   adminPassword: "adminpassword"
-
-# postgresql:
-#   enabled: true
-#   postgresqlUsername: keycloak
-#   postgresqlPassword: keycloakpassword
-#   postgresqlDatabase: keycloak
-#   persistence:
-#     enabled: true
-#     size: 8Gi
-
-# persistence:
-#   enabled: true
-#   size: 8Gi
-
-# service:
-#   type: ClusterIP
-#   port: 8080
-
-# resources:
-#   requests:
-#     memory: 512Mi
-#     cpu: 250m
-#   limits:
-#     memory: 1Gi
-#     cpu: 500m
-# postgresql:
-#   enabled: true
-#   auth:
-#     postgresPassword: ""
-#     username: bn_keycloak
-#     password: ""
-#     database: bitnami_keycloak
