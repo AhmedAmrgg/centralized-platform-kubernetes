@@ -11,7 +11,9 @@ spec:
     chart: keycloak
     helm:
       values: |
-        ingress: 
+        ingress:
+          annotations: 
+            alb.ingress.kubernetes.io/target-type: ip 
           enabled: true
           ingressClassName: alb
         global:

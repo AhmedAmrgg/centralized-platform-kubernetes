@@ -12,6 +12,8 @@ spec:
     helm:
       values: |
         ingress: 
+          annotations: 
+            alb.ingress.kubernetes.io/target-type: ip 
           enabled: true
           ingressClassName: alb
         # assertNoLeakedSecrets: false
