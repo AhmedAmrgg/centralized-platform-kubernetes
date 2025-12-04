@@ -11,6 +11,7 @@ spec:
     chart: keycloak
     helm:
       values: |
+        hostnameStrict: true
         ingress:
           annotations: 
             alb.ingress.kubernetes.io/target-type: ip 
