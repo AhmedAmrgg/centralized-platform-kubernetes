@@ -15,7 +15,7 @@ spec:
           annotations: 
             alb.ingress.kubernetes.io/target-type: ip 
             alb.ingress.kubernetes.io/scheme: internet-facing
-          enabled: false
+          enabled: true
           ingressClassName: alb
         global:
           security: 
